@@ -4,18 +4,38 @@ namespace  Omnipay\Moneris\Message;
 
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
-    protected $host = 'https://www3.moneris.com:443/gateway2/servlet/MpgRequest';
-    protected $testHost = 'https://esqa.moneris.com:443/gateway2/servlet/MpgRequest';
-    protected $endpoint = '';
+    protected $endpoint = null;
 
     public function getEndpoint()
     {
-        return $this->getTestMode() ? $this->testHost : $this->host;
+        if ($this->endpoint) return $this->endpoint;
+        
+        return $this->endpoint = $this->getTestMode() ? $this->getSandboxEndPoint() : $this->getProductionEndPoint();
     }
 
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
+    }
+    
+    public function getSandboxEndPoint()
+    {
+        return $this->getParameter('sandboxEndPoint');
+    }
+    
+    public function setSandboxEndPoint($value)
+    {
+        return $this->setParameter('sandboxEndPoint', $value);
+    }
+    
+    public function getProductionEndPoint()
+    {
+        return $this->getParameter('productionEndPoint');
+    }
+    
+    public function setProductionEndPoint($value)
+    {
+        return $this->setParameter('productionEndPoint', $value);
     }
 
     public function getMerchantId()
