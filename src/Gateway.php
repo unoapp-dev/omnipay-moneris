@@ -64,5 +64,15 @@ class Gateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\Moneris\Message\RefundRequest', $parameters);
     }
+    
+    public function authorize(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Moneris\Message\AuthorizeRequest', $parameters);
+    }
+    
+    public function capture(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Moneris\Message\CaptureRequest', $parameters);
+    }
 }
 
