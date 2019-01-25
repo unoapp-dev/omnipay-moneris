@@ -110,10 +110,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             $xmlResponse = simplexml_load_string($httpResponse->getBody()->getContents());
         }
         catch (\Exception $e){
-            info('Guzzle response : ', [$httpResponse]);
-            $res = [];
-            $res['resptext'] = 'Oops! something went wrong, Try again after sometime.';
-            return $this->response = new Response($this, $res);
+            $xmlResponse = (string) $httpResponse->getBody(true);
         }
 
         return $this->response = new Response($this, $xmlResponse);

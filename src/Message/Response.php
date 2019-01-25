@@ -58,6 +58,16 @@ class Response extends AbstractResponse
 
     public function getData()
     {
-        return preg_replace('/\n/', '', ($this->data)->asXML());
+        $response = Null;
+
+        try {
+            $response = preg_replace('/\n/', '', ($this->data)->asXML());
+        } catch (\Exception $e){
+            $response = $this->data;
+        } catch (\Error $e){
+            $response = $this->data;
+        }
+
+        return $response;
     }
 }
