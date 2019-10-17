@@ -17,6 +17,11 @@ class Response extends AbstractResponse
             isset($this->data->receipt->Message) && str_contains($this->data->receipt->Message, 'APPROVED')
         )
             return true;
+        else if (
+            isset($this->data->receipt->ResponseCode) && $this->data->receipt->ResponseCode != null &&
+            (int) $this->data->receipt->ResponseCode >= 0  && (int) $this->data->receipt->ResponseCode <= 49
+        )
+            return true;
 
         return false;
     }
