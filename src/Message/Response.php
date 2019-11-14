@@ -9,7 +9,7 @@ class Response extends AbstractResponse
     public function isSuccessful()
     {
         if (
-            (isset($this->data->receipt->DataKey) && $this->data->receipt->DataKey != null) &&
+            (isset($this->data->receipt->DataKey) && ($this->data->receipt->DataKey != null || $this->data->receipt->DataKey != 'null')) &&
             (isset($this->data->receipt->Message) && str_contains($this->data->receipt->Message, 'Success'))
         )
             return true;
