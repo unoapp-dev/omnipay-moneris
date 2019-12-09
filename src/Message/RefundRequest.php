@@ -2,13 +2,20 @@
 
 namespace Omnipay\Moneris\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
+
 class RefundRequest extends AbstractRequest
 {
     public function getData()
     {
         $this->validate('amount', 'transactionReference');
 
-        $transactionReference = simplexml_load_string($this->getTransactionReference());
+        try {
+            $transactionReference = simplexml_load_string($this->getTransactionReference());
+        } catch (\Exception $e) {
+            throw new InvalidRequestException('Invalid transaction reference');
+        }
+
         $transactionReceipt = $transactionReference->receipt;
 
         $request = new \SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><request></request>');
@@ -25,6 +32,6 @@ class RefundRequest extends AbstractRequest
 
         $data = $request->asXML();
 
-        return preg_replace('/\n/', ' ', $data);
+        return preg_replace('/\n/', '', $data);
     }
 }

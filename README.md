@@ -13,7 +13,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "unoapp-dev/omnipay-moneris": "^1.*"
+        "unoapp-dev/omnipay-moneris": "^2.*"
     }
 }
 ```

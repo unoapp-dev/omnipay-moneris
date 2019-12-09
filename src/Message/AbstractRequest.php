@@ -4,38 +4,12 @@ namespace  Omnipay\Moneris\Message;
 
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
-    protected $endpoint = null;
+    public $testEndpoint = 'https://esqa.moneris.com:443/gateway2/servlet/MpgRequest';
+    public $liveEndpoint = 'https://www3.moneris.com:443/gateway2/servlet/MpgRequest';
 
     public function getEndpoint()
     {
-        if ($this->endpoint) return $this->endpoint;
-        
-        return $this->endpoint = $this->getTestMode() ? $this->getSandboxEndPoint() : $this->getProductionEndPoint();
-    }
-
-    public function setEndpoint($endpoint)
-    {
-        $this->endpoint = $endpoint;
-    }
-    
-    public function getSandboxEndPoint()
-    {
-        return $this->getParameter('sandboxEndPoint');
-    }
-    
-    public function setSandboxEndPoint($value)
-    {
-        return $this->setParameter('sandboxEndPoint', $value);
-    }
-    
-    public function getProductionEndPoint()
-    {
-        return $this->getParameter('productionEndPoint');
-    }
-    
-    public function setProductionEndPoint($value)
-    {
-        return $this->setParameter('productionEndPoint', $value);
+        return $this->getTestMode() ? $this->testEndpoint : $this->liveEndpoint;
     }
 
     public function getMerchantId()
@@ -60,32 +34,32 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     public function getPaymentMethod()
     {
-        return $this->getParameter('payment_method');
+        return $this->getParameter('paymentMethod');
     }
 
     public function setPaymentMethod($value)
     {
-        return $this->setParameter('payment_method', $value);
+        return $this->setParameter('paymentMethod', $value);
     }
 
     public function getPaymentProfile()
     {
-        return $this->getParameter('payment_profile');
+        return $this->getParameter('paymentProfile');
     }
 
     public function setPaymentProfile($value)
     {
-        return $this->setParameter('payment_profile', $value);
+        return $this->setParameter('paymentProfile', $value);
     }
 
     public function getOrderNumber()
     {
-        return $this->getParameter('order_number');
+        return $this->getParameter('orderNumber');
     }
 
     public function setOrderNumber($value)
     {
-        return $this->setParameter('order_number', $value);
+        return $this->setParameter('orderNumber', $value);
     }
 
     protected function getHttpMethod()
@@ -96,24 +70,17 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function sendData($data)
     {
         $headers = [
-            'Content-Type' => 'application/xml'
+            'Content-Type' => 'application/xml',
         ];
-        
-        if(!empty($data)) {
-            $httpResponse = $this->httpClient->request($this->getHttpMethod(), $this->getEndpoint(), $headers, $data);
-        }
-        else {
-            $httpResponse = $this->httpClient->request($this->getHttpMethod(), $this->getEndpoint(), $headers);
-        }
-    
+
+        $httpResponse = $this->httpClient->request($this->getHttpMethod(), $this->getEndpoint(), $headers, $data);
+
         try {
             $xmlResponse = simplexml_load_string($httpResponse->getBody()->getContents());
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             $xmlResponse = (string) $httpResponse->getBody(true);
         }
 
         return $this->response = new Response($this, $xmlResponse);
     }
 }
-
