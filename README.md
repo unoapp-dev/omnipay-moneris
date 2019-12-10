@@ -2,11 +2,12 @@
 
 **Moneris driver for the Omnipay PHP payment processing library**
 
-[![Build Status](https://travis-ci.org/unoapp-dev/omnipay-moneris.svg?branch=master)](https://travis-ci.org/unoapp-dev/omnipay-moneris)
-[![Coverage Status](https://coveralls.io/repos/github/unoapp-dev/omnipay-moneris/badge.svg?branch=master)](https://coveralls.io/github/unoapp-dev/omnipay-moneris?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/unoapp-dev/omnipay-moneris/v/stable)](https://packagist.org/packages/unoapp-dev/omnipay-moneris)
-[![Total Downloads](https://poser.pugx.org/unoapp-dev/omnipay-moneris/downloads)](https://packagist.org/packages/unoapp-dev/omnipay-moneris)
-[![License](https://poser.pugx.org/unoapp-dev/omnipay-moneris/license)](https://packagist.org/packages/unoapp-dev/omnipay-moneris)
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-travis]][link-travis]
+[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Total Downloads][ico-downloads]][link-downloads]
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 5.3+. This package implements Moneris support for Omnipay.
@@ -19,7 +20,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "unoapp-dev/omnipay-moneris": "^2.*"
+        "anilahir/omnipay-moneris": "^2.*"
     }
 }
 ```
@@ -48,5 +49,20 @@ If you want to keep up to date with release anouncements, discuss ideas for the 
 or ask more detailed questions, there is also a [mailing list](https://groups.google.com/forum/#!forum/omnipay) which
 you can subscribe to.
 
-If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/unoapp-dev/omnipay-moneris/issues),
+If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/anilahir/omnipay-moneris/issues),
 or better yet, fork the library and submit a pull request.
+
+[ico-version]: https://img.shields.io/packagist/v/unoapp-dev/omnipay-moneris.svg?style=flat-square
+[ico-license]: https://img.shields.io/packagist/l/anilahir/omnipay-moneris?color=brightgreen&style=flat-square
+[ico-travis]: https://img.shields.io/travis/unoapp-dev/omnipay-moneris/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/unoapp-dev/omnipay-moneris.svg?style=flat-square
+[ico-coverage-status]: https://coveralls.io/repos/github/unoapp-dev/omnipay-moneris/badge.svg?branch=master
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/unoapp-dev/omnipay-moneris.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/unoapp-dev/omnipay-moneris.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/unoapp-dev/omnipay-moneris
+[link-travis]: https://travis-ci.org/unoapp-dev/omnipay-moneris
+[link-scrutinizer]: https://scrutinizer-ci.com/g/unoapp-dev/omnipay-moneris/code-structure
+[link-coverage-status]: https://coveralls.io/github/unoapp-dev/omnipay-moneris?branch=master
+[link-code-quality]: https://scrutinizer-ci.com/g/unoapp-dev/omnipay-moneris
+[link-downloads]: https://packagist.org/packages/unoapp-dev/omnipay-moneris
