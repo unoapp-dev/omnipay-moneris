@@ -6,6 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/unoapp-dev/omnipay-moneris/badge.svg?branch=master)](https://coveralls.io/github/unoapp-dev/omnipay-moneris?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/unoapp-dev/omnipay-moneris/v/stable)](https://packagist.org/packages/unoapp-dev/omnipay-moneris)
 [![Total Downloads](https://poser.pugx.org/unoapp-dev/omnipay-moneris/downloads)](https://packagist.org/packages/unoapp-dev/omnipay-moneris)
+[![License](https://poser.pugx.org/unoapp-dev/omnipay-moneris/license)](https://packagist.org/packages/unoapp-dev/omnipay-moneris)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 5.3+. This package implements Moneris support for Omnipay.
