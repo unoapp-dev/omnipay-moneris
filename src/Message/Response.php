@@ -9,8 +9,9 @@ class Response extends AbstractResponse
     public function isSuccessful()
     {
         if (
-            (isset($this->data->receipt->DataKey) && ($this->data->receipt->DataKey != null || $this->data->receipt->DataKey != 'null')) &&
-            (isset($this->data->receipt->Message) && str_contains($this->data->receipt->Message, 'Success'))
+            isset($this->data->receipt->DataKey) && 
+            $this->data->receipt->DataKey != null && $this->data->receipt->DataKey != 'null' &&
+            isset($this->data->receipt->Message) && str_contains($this->data->receipt->Message, 'Success')
         )
             return true;
         else if (
@@ -18,7 +19,8 @@ class Response extends AbstractResponse
         )
             return true;
         else if (
-            isset($this->data->receipt->ResponseCode) && $this->data->receipt->ResponseCode != null &&
+            isset($this->data->receipt->ResponseCode) && 
+            $this->data->receipt->ResponseCode != null && $this->data->receipt->ResponseCode != 'null' &&
             (int) $this->data->receipt->ResponseCode >= 0  && (int) $this->data->receipt->ResponseCode <= 49
         )
             return true;
