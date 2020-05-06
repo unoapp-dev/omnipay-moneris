@@ -10,7 +10,6 @@ class CreateCardRequest extends AbstractRequest
         $this->getCard()->validate();
 
         if ($this->getCard()) {
-
             $request = new \SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><request></request>');
             $request->addChild('store_id', $this->getMerchantId());
             $request->addChild('api_token', $this->getMerchantKey());

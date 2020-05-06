@@ -8,8 +8,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     public function getEndpoint()
     {
-        if ($this->endpoint) return $this->endpoint;
-        
+        if ($this->endpoint) {
+            return $this->endpoint;
+        }
+
         return $this->endpoint = $this->getTestMode() ? $this->getSandboxEndPoint() : $this->getProductionEndPoint();
     }
 
@@ -17,22 +19,22 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         $this->endpoint = $endpoint;
     }
-    
+
     public function getSandboxEndPoint()
     {
         return $this->getParameter('sandboxEndPoint');
     }
-    
+
     public function setSandboxEndPoint($value)
     {
         return $this->setParameter('sandboxEndPoint', $value);
     }
-    
+
     public function getProductionEndPoint()
     {
         return $this->getParameter('productionEndPoint');
     }
-    
+
     public function setProductionEndPoint($value)
     {
         return $this->setParameter('productionEndPoint', $value);
@@ -96,24 +98,21 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function sendData($data)
     {
         $headers = [
-            'Content-Type' => 'application/xml'
+            'Content-Type' => 'application/xml',
         ];
-        
-        if(!empty($data)) {
+
+        if (!empty($data)) {
             $httpResponse = $this->httpClient->request($this->getHttpMethod(), $this->getEndpoint(), $headers, $data);
-        }
-        else {
+        } else {
             $httpResponse = $this->httpClient->request($this->getHttpMethod(), $this->getEndpoint(), $headers);
         }
-    
+
         try {
             $xmlResponse = simplexml_load_string($httpResponse->getBody()->getContents());
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             $xmlResponse = (string) $httpResponse->getBody(true);
         }
 
         return $this->response = new Response($this, $xmlResponse);
     }
 }
-

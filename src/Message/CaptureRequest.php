@@ -13,15 +13,14 @@ class CaptureRequest extends AbstractRequest
         try {
             $transactionReference = simplexml_load_string($this->getTransactionReference());
             $transactionReceipt = $transactionReference->receipt;
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new InvalidRequestException('Invalid transaction reference');
         }
-        
+
         $request = new \SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><request></request>');
         $request->addChild('store_id', $this->getMerchantId());
         $request->addChild('api_token', $this->getMerchantKey());
-    
+
         $refund = $request->addChild('completion');
         $refund->addChild('order_id', $transactionReceipt->ReceiptId);
         $refund->addChild('comp_amount', $transactionReceipt->TransAmount);
@@ -29,10 +28,9 @@ class CaptureRequest extends AbstractRequest
         $refund->addChild('crypt_type', 1);
         $refund->addChild('cust_id', $transactionReceipt->ReferenceNum);
         $refund->addChild('dynamic_descriptor', 'capture');
-    
+
         $data = $request->asXML();
-    
+
         return preg_replace('/\n/', ' ', $data);
     }
 }
-
