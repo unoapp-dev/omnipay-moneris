@@ -88,6 +88,28 @@ class GatewayTest extends GatewayTestCase
         $this->assertFalse($response->isSuccessful());
     }
 
+    public function test_void_success()
+    {
+        $this->setMockHttpResponse('VoidSuccess.txt');
+
+        $response = $this->gateway->void([
+            'transactionReference' => '<?xml version="1.0" standalone="yes"?><response></response>',
+        ])->send();
+
+        $this->assertTrue($response->isSuccessful());
+    }
+
+    public function test_void_failed()
+    {
+        $this->setMockHttpResponse('VoidFailure.txt');
+
+        $response = $this->gateway->void([
+            'transactionReference' => '<?xml version="1.0" standalone="yes"?><response></response>',
+        ])->send();
+
+        $this->assertFalse($response->isSuccessful());
+    }
+
     public function test_capture_success()
     {
         $this->setMockHttpResponse('CaptureSuccess.txt');
