@@ -35,4 +35,3 @@ class VoidRequest extends AbstractRequest
         return preg_replace('/\n/', ' ', $data);
     }
 }
-
