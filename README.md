@@ -20,7 +20,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "anilahir/omnipay-moneris": "^2.*"
+        "unoapp-dev/omnipay-moneris": "^2.*"
     }
 }
 ```
