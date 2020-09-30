@@ -32,6 +32,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('merchantKey', $value);
     }
 
+    public function getCryptType()
+    {
+        return $this->getParameter('cryptType');
+    }
+
+    public function setCryptType($value)
+    {
+        return $this->setParameter('cryptType', $value);
+    }
+
     public function getPaymentMethod()
     {
         return $this->getParameter('paymentMethod');

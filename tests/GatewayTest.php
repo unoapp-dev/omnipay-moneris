@@ -16,6 +16,11 @@ class GatewayTest extends GatewayTestCase
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
     }
 
+    public function test_crypt_type_default()
+    {
+        $this->assertEquals(1, $this->gateway->getCryptType());
+    }
+
     public function test_create_card_success()
     {
         $this->setMockHttpResponse('CreateCardSuccess.txt');

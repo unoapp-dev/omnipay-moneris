@@ -22,6 +22,7 @@ class AbstractRequestTest extends TestCase
         $this->request->initialize([
             'merchant_id'    => 'FAKE_MERCHANT_ID',
             'merchant_key'   => 'FAKE_MERCHANT_KEY',
+            'cryptType'      => 7,
             'orderNumber'    => 'DUMMY_ORDER_NUMBER',
             'paymentProfile' => 'FAKE_PAYMENT_PROFILE',
             'amount'         => 5.00,
@@ -30,6 +31,7 @@ class AbstractRequestTest extends TestCase
 
         $this->assertEquals('FAKE_MERCHANT_ID', $this->request->getMerchantId());
         $this->assertEquals('FAKE_MERCHANT_KEY', $this->request->getMerchantKey());
+        $this->assertEquals(7, $this->request->getCryptType());
         $this->assertEquals('DUMMY_ORDER_NUMBER', $this->request->getOrderNumber());
         $this->assertEquals('FAKE_PAYMENT_PROFILE', $this->request->getPaymentProfile());
         $this->assertEquals(5.00, $this->request->getAmount());
