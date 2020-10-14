@@ -23,7 +23,7 @@ class CreateCardRequest extends AbstractRequest
             $res_add_cc->addChild('note', 'NA');
             $res_add_cc->addChild('pan', $card->getNumber());
             $res_add_cc->addChild('expdate', $card->getExpiryDate('my'));
-            $res_add_cc->addChild('crypt_type', 1);
+            $res_add_cc->addChild('crypt_type', $this->getCryptType());
 
             $avs_info = $res_add_cc->addChild('avs_info');
             $avs_info->addChild('avs_street_number', 'NA');

@@ -22,6 +22,7 @@ class Gateway extends AbstractGateway
         return [
             'merchantId'  => '',
             'merchantKey' => '',
+            'cryptType' => 1,
         ];
     }
 
@@ -43,6 +44,16 @@ class Gateway extends AbstractGateway
     public function setMerchantKey($value)
     {
         return $this->setParameter('merchantKey', $value);
+    }
+
+    public function getCryptType()
+    {
+        return $this->getParameter('cryptType');
+    }
+
+    public function setCryptType($value)
+    {
+        return $this->setParameter('cryptType', $value);
     }
 
     public function createCard(array $parameters = [])

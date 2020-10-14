@@ -26,7 +26,7 @@ class VoidRequest extends AbstractRequest
         $refund->addChild('order_id', $transactionReceipt->ReceiptId);
         $refund->addChild('comp_amount', '0.00');
         $refund->addChild('txn_number', $transactionReceipt->TransID);
-        $refund->addChild('crypt_type', 1);
+        $refund->addChild('crypt_type', $this->getCryptType());
         $refund->addChild('cust_id', $transactionReceipt->ReferenceNum);
         $refund->addChild('dynamic_descriptor', 'void');
 
