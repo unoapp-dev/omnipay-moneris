@@ -42,7 +42,7 @@ class PurchaseRequest extends AbstractRequest
     {
         $data = null;
 
-        $this->validate('orderNumber', 'cryptType', 'amount', 'paymentMethod');
+        $this->validate('orderNumber', 'cryptType', 'amount', 'paymentMethod', 'description');
 
         $paymentMethod = $this->getPaymentMethod();
 
