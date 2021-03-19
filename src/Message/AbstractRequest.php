@@ -106,9 +106,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Validate the request.
      *
-     * This method is called internally by gateways to avoid wasting time with an API call
-     * when the request is clearly invalid.
-     *
      * @param string ... a variable length list of required parameters
      * @throws InvalidRequestException
      * @see Omnipay\Common\ParametersTrait::validate()
