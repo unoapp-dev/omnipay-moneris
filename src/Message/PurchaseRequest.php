@@ -61,6 +61,10 @@ class PurchaseRequest extends AbstractRequest
                 $res_purchase_cc->addChild('amount', $this->getAmount());
                 $res_purchase_cc->addChild('crypt_type', $this->getCryptType());
 
+                if ($this->getDescription()) {
+                    $res_purchase_cc->addChild('dynamic_descriptor', $this->getDescription());
+                }
+
                 $data = $request->asXML();
                 break;
 
@@ -80,7 +84,10 @@ class PurchaseRequest extends AbstractRequest
                 $purchase->addChild('cust_id', 'Transaction_'.$this->getOrderNumber());
                 $purchase->addChild('amount', $this->getAmount());
                 $purchase->addChild('crypt_type', $this->getCryptType());
-                $purchase->addChild('dynamic_descriptor', $this->getDescription());
+
+                if ($this->getDescription()) {
+                    $purchase->addChild('dynamic_descriptor', $this->getDescription());
+                }
 
                 $cvd_info = $purchase->addChild('cvd_info');
                 $cvd_info->addChild('cvd_indicator', self::CVD_PRESENT);
