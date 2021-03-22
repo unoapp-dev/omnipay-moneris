@@ -18,7 +18,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * Allowable values for the e-commerce transaction category being processed
      *
      * @var array
-     * @see https://developer.moneris.com/en/Documentation/NA/E-Commerce%20Solutions/API/Purchase
+     * @link https://developer.moneris.com/en/Documentation/NA/E-Commerce%20Solutions/API/Purchase
      */
     const ECOMMERCE_INDICATORS = array(
         self::MAIL_ORDER_TELEPHONE_ORDER_SINGLE,
