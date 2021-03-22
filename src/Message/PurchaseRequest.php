@@ -42,7 +42,7 @@ class PurchaseRequest extends AbstractRequest
     {
         $data = null;
 
-        $this->validate('orderNumber', 'cryptType', 'amount', 'paymentMethod', 'description');
+        $this->validate('paymentMethod', 'orderNumber', 'cryptType', 'amount', 'description');
 
         $paymentMethod = $this->getPaymentMethod();
 
@@ -71,11 +71,12 @@ class PurchaseRequest extends AbstractRequest
             case 'card':
                 $this->validate('card');
 
+                $card = $this->getCard();
+                $card->validate();
+
                 $request = new \SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><request></request>');
                 $request->addChild('store_id', $this->getMerchantId());
                 $request->addChild('api_token', $this->getMerchantKey());
-
-                $card = $this->getCard();
 
                 $purchase = $request->addChild('purchase');
                 $purchase->addChild('pan', $card->getNumber());
