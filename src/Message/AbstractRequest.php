@@ -133,7 +133,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                     break;
 
                 case 'description':
-                    if (strlen($value) > 20) {
+                    if (isset($value) && strlen($value) > 20) {
                         throw new InvalidRequestException("The $key parameter cannot be longer than 20 characters");
                     }
                     break;
