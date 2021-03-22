@@ -154,7 +154,7 @@ class PurchaseRequestTest extends TestCase
             'cryptType'     => 1,
             'cardReference' => 'FAKE_CARD_REFERENCE',
             'amount'        => 5.00,
-            'description'   => "ZGL5Dp0htqaKRzfeIOiVJm",    // randomly generated 22 character string
+            'description'   => "ZGL5Dp0htqaKRzfeIOiVJm",
         ]);
 
         $this->expectException(InvalidRequestException::class);
@@ -182,7 +182,6 @@ class PurchaseRequestTest extends TestCase
             'cryptType'     => 1,
             'amount'        => 5.00,
         ]);
-
 
         $this->expectException(InvalidRequestException::class);
         $this->request->send();

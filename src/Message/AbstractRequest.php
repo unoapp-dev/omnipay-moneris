@@ -15,20 +15,20 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     const SSL_ENABLED_MERCHANT = 7;
 
     /**
-     * Allowable values for the e-commerce transaction category being processed
+     * Allowable values for the e-commerce transaction category being processed.
      *
      * @var array
      * @link https://developer.moneris.com/en/Documentation/NA/E-Commerce%20Solutions/API/Purchase
      */
-    const ECOMMERCE_INDICATORS = array(
+    const ECOMMERCE_INDICATORS = [
         self::MAIL_ORDER_TELEPHONE_ORDER_SINGLE,
         self::MAIL_ORDER_TELEPHONE_ORDER_RECURRING,
         self::MAIL_ORDER_TELEPHONE_ORDER_INSTALMENT,
         self::MAIL_ORDER_TELEPHONE_ORDER_UNKNOWN_CLASSIFICATION,
         self::AUTHENTICATED_E_COMMERCE_TRANSACTION_VBV,
         self::NON_AUTHENTICATED_E_COMMERCE_TRANSACTION_VBV,
-        self::SSL_ENABLED_MERCHANT
-    );
+        self::SSL_ENABLED_MERCHANT,
+    ];
 
     public $testEndpoint = 'https://esqa.moneris.com:443/gateway2/servlet/MpgRequest';
     public $liveEndpoint = 'https://www3.moneris.com:443/gateway2/servlet/MpgRequest';

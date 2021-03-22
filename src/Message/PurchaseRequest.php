@@ -1,6 +1,6 @@
 <?php
 /**
- * Moneris Purchase Request
+ * Moneris Purchase Request.
  */
 
 namespace Omnipay\Moneris\Message;
@@ -8,7 +8,7 @@ namespace Omnipay\Moneris\Message;
 use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
- * Moneris Purchase Request class
+ * Moneris Purchase Request class.
  *
  * Moneris provides various payment related operations based on the data
  * submitted to their API. Use purchase for direct credit card payments
