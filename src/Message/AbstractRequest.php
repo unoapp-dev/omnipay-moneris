@@ -119,6 +119,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 case 'orderNumber':
                     if (! isset($value)) {
                         throw new InvalidRequestException("The $key parameter is required");
+                    } elseif (empty($value)) {
+                        throw new InvalidRequestException("The $key parameter cannot be empty");
                     } elseif (strlen($value) > 50) {
                         throw new InvalidRequestException("The $key parameter cannot be longer than 50 characters");
                     }
