@@ -2,8 +2,34 @@
 
 namespace  Omnipay\Moneris\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
+
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
+    const MAIL_ORDER_TELEPHONE_ORDER_SINGLE = 1;
+    const MAIL_ORDER_TELEPHONE_ORDER_RECURRING = 2;
+    const MAIL_ORDER_TELEPHONE_ORDER_INSTALMENT = 3;
+    const MAIL_ORDER_TELEPHONE_ORDER_UNKNOWN_CLASSIFICATION = 4;
+    const AUTHENTICATED_E_COMMERCE_TRANSACTION_VBV = 5;
+    const NON_AUTHENTICATED_E_COMMERCE_TRANSACTION_VBV = 6;
+    const SSL_ENABLED_MERCHANT = 7;
+
+    /**
+     * Allowable values for the e-commerce transaction category being processed.
+     *
+     * @var array
+     * @link https://developer.moneris.com/en/Documentation/NA/E-Commerce%20Solutions/API/Purchase
+     */
+    const ECOMMERCE_INDICATORS = [
+        self::MAIL_ORDER_TELEPHONE_ORDER_SINGLE,
+        self::MAIL_ORDER_TELEPHONE_ORDER_RECURRING,
+        self::MAIL_ORDER_TELEPHONE_ORDER_INSTALMENT,
+        self::MAIL_ORDER_TELEPHONE_ORDER_UNKNOWN_CLASSIFICATION,
+        self::AUTHENTICATED_E_COMMERCE_TRANSACTION_VBV,
+        self::NON_AUTHENTICATED_E_COMMERCE_TRANSACTION_VBV,
+        self::SSL_ENABLED_MERCHANT,
+    ];
+
     public $testEndpoint = 'https://esqa.moneris.com:443/gateway2/servlet/MpgRequest';
     public $liveEndpoint = 'https://www3.moneris.com:443/gateway2/servlet/MpgRequest';
 
@@ -75,6 +101,52 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected function getHttpMethod()
     {
         return 'POST';
+    }
+
+    /**
+     * Validate the request.
+     *
+     * @param string ... a variable length list of required parameters
+     * @throws InvalidRequestException
+     * @see Omnipay\Common\ParametersTrait::validate()
+     */
+    public function validate(...$args)
+    {
+        foreach ($args as $key) {
+            $value = $this->parameters->get($key);
+
+            switch ($key) {
+                case 'orderNumber':
+                    if (! isset($value)) {
+                        throw new InvalidRequestException("The $key parameter is required");
+                    } elseif (empty($value)) {
+                        throw new InvalidRequestException("The $key parameter cannot be empty");
+                    } elseif (strlen($value) > 50) {
+                        throw new InvalidRequestException("The $key parameter cannot be longer than 50 characters");
+                    }
+                    break;
+
+                case 'cryptType':
+                    if (! isset($value)) {
+                        throw new InvalidRequestException("The $key parameter is required");
+                    } elseif (! in_array($value, self::ECOMMERCE_INDICATORS)) {
+                        throw new InvalidRequestException("The $key is invalid");
+                    }
+                    break;
+
+                case 'description':
+                    if (isset($value) && strlen($value) > 20) {
+                        throw new InvalidRequestException("The $key parameter cannot be longer than 20 characters");
+                    }
+                    break;
+
+                default:
+                    if (! isset($value)) {
+                        throw new InvalidRequestException("The $key parameter is required");
+                    }
+                    break;
+            }
+        }
     }
 
     public function sendData($data)
